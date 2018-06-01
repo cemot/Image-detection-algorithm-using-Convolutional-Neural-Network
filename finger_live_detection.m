@@ -1,6 +1,6 @@
 clc;clear all;
 tic
-% IMAGES ARE HAVE DIMENSION 128*128
+% IMAGES HAVE DIMENSION 128*128
 rootFolderTrain = 'training_data' ;
 categories = {'ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'};
 imdsTrain = imageDatastore(fullfile(rootFolderTrain, categories), 'LabelSource', 'foldernames');
