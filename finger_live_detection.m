@@ -1,6 +1,6 @@
 clc;clear all;
 tic
-% IMAGES ARE CONVERTED INTO 128*128
+% IMAGES ARE HAVE DIMENSION 128*128
 rootFolderTrain = 'training_data' ;
 categories = {'ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'};
 imdsTrain = imageDatastore(fullfile(rootFolderTrain, categories), 'LabelSource', 'foldernames');
@@ -31,11 +31,12 @@ options = trainingOptions('sgdm', ...
 
 % Train the network
 
-% cifar10Net = trainNetwork(imdsTrain, layers, options );
+cifar10Net = trainNetwork(imdsTrain, layers, options );
 
 % TO AVOID TRAINING, YOU CAN LOAD TRAINED MODEL
-load('final_train.mat');
-%% KEEP IN MIND THAT PICTURES CAPTURED WITH CONSTANT BACKGROUND SO WHILE DETECTING THERE SHOULD BE CONSTANT BACKGROUND
+%load('final_train.mat');
+
+%% KEEP IN MIND THAT PICTURES CAPTURED WITH CONSTANT BACKGROUND SO WHILE DETECTING THERE SHOULD BE CONSTANT BACKGROUND(PREFERABBLY WHITE)
 camera = webcam;
 h = figure;
 h.Position(3) = 2*h.Position(3);
