@@ -18,7 +18,6 @@ layers = [
     fullyConnectedLayer(5)
     softmaxLayer
     classificationLayer];
-
 options = trainingOptions('sgdm', ...
     'InitialLearnRate', 0.001, ...
     'LearnRateSchedule', 'piecewise', ...
@@ -30,9 +29,7 @@ options = trainingOptions('sgdm', ...
     'Verbose', true, 'Plots','training-progress');
 
 % Train the network
-
 cifar10Net = trainNetwork(imdsTrain, layers, options );
-
 % TO AVOID TRAINING, YOU CAN LOAD TRAINED MODEL
 %load('final_train.mat');
 
@@ -45,7 +42,6 @@ ax2 = subplot(1,2,2);
 ax2.ActivePositionProperty = 'position';
 keepRolling = true;
 set(gcf,'CloseRequestFcn','keepRolling = false; closereq');
-
 while keepRolling
     % Display and classify the image
     im = snapshot(camera);
@@ -53,14 +49,12 @@ while keepRolling
     im = imresize(im, [128 128]);
     [label,score] = classify(cifar10Net,im);
     title(ax1,{char(label),num2str(max(score),2)});
-    
     % Select the top five predictions
     classNames = cifar10Net.Layers(end).ClassNames
     [~,idx] = sort(score,'descend');
     idx = idx(5:-1:1);
     scoreTop = score(idx);
     classNamesTop = classNames(idx);
-    
     % Plot the histogram
     barh(ax2,scoreTop)
     title(ax2,'Top 5')
